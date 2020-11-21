@@ -478,7 +478,7 @@ class UnetSkipConnectionBlock(nn.Module):
         Parameters:
             outer_nc (int) -- the number of filters in the outer conv layer
             inner_nc (int) -- the number of filters in the inner conv layer
-            input_nc (int) -- the number of channels in input images/features
+            input_nc (int) -- the number of channels in input images/features 只有最外层需要input_nc参数
             submodule (UnetSkipConnectionBlock) -- previously defined submodules
             outermost (bool)    -- if this module is the outermost module
             innermost (bool)    -- if this module is the innermost module
