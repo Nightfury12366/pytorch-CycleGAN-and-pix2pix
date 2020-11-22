@@ -20,7 +20,7 @@ def is_image_file(filename):
     return any(filename.endswith(extension) for extension in IMG_EXTENSIONS)
 
 
-def make_dataset(dir, max_dataset_size=float("inf")):
+def make_dataset(dir, max_dataset_size=float("inf")):  # 返回此文件夹下所有的图片路径列表
     images = []
     assert os.path.isdir(dir), '%s is not a valid directory' % dir
 
@@ -32,7 +32,7 @@ def make_dataset(dir, max_dataset_size=float("inf")):
     return images[:min(max_dataset_size, len(images))]
 
 
-def default_loader(path):
+def default_loader(path):  # 加载图片
     return Image.open(path).convert('RGB')
 
 
@@ -40,7 +40,7 @@ class ImageFolder(data.Dataset):
 
     def __init__(self, root, transform=None, return_paths=False,
                  loader=default_loader):
-        imgs = make_dataset(root)
+        imgs = make_dataset(root)  # 调用make_dataset函数
         if len(imgs) == 0:
             raise(RuntimeError("Found 0 images in: " + root + "\n"
                                "Supported image extensions are: " + ",".join(IMG_EXTENSIONS)))
@@ -48,7 +48,7 @@ class ImageFolder(data.Dataset):
         self.root = root
         self.imgs = imgs
         self.transform = transform
-        self.return_paths = return_paths
+        self.return_paths = return_paths。#是否返回图片路径
         self.loader = loader
 
     def __getitem__(self, index):
